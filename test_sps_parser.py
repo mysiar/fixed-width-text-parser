@@ -10,7 +10,7 @@ class Sps21ParserTest(unittest.TestCase):
         self.assertEqual(15, len(fields))
         self.assertEqual('EASTING', fields[10])
 
-    def test_parse(self):
+    def test_parse_point(self):
         parser = Sps21Parser()
         record = 'S  21528.00  27830.00  1P1             0       756755.8 2561875.5 138.1265120558'
 
@@ -60,6 +60,28 @@ class Sps21ParserTest(unittest.TestCase):
             'RECORD_ID,LINE,POINT,POINT_IDX,POINT_CODE,STATIC_COR,POINT_DEPTH,DATUM,UPHOLE_TIME,WATER_DEPTH,EASTING,NORTHING,ELEVATION,DAY_OF_YEAR,TIME',
             csv
         )
+
+    def test_parse_relation(self):
+        parser = Sps21Parser()
+        record = 'X  1001   8287311  19248.00  27516.001    1  4351  27023.00  18875.00  19743.001'
+
+        data = parser.parse_relation(record)
+
+        self.assertEqual('X', data[0])
+        self.assertEqual('1001', data[1])
+        self.assertEqual(82873, data[2])
+        self.assertEqual(1, data[3])
+        self.assertEqual('1', data[4])
+        self.assertEqual(19248.00, data[5])
+        self.assertEqual(27516.00, data[6])
+        self.assertEqual(1, data[7])
+        self.assertEqual(1, data[8])
+        self.assertEqual(435, data[9])
+        self.assertEqual(1, data[10])
+        self.assertEqual(27023.00, data[11])
+        self.assertEqual(18875.00, data[12])
+        self.assertEqual(19743.00, data[13])
+        self.assertEqual(1, data[14])
 
 
 if __name__ == '__main__':
