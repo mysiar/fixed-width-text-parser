@@ -35,7 +35,7 @@ sps21point = [
     ['RECORD_ID', 0, 1, 'string'],
     ['LINE', 1, 10, 'float'],
     ['POINT', 11, 10, 'float'],
-    ['POINT_IDX', 23, 1, 'integer'],
+    ['POINT_IDX', 23, 1, 'integer', 1],
     ['POINT_CODE', 24, 2, 'string'],
     ['STATIC_COR', 26, 4, 'integer'],
     ['POINT_DEPTH', 30, 4, 'float'],

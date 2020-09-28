@@ -14,17 +14,19 @@ definition = [
     ['FIELD_3', 11, 10, 'float'],
     ['FIELD_4', 23, 1, 'integer'],
     ['FIELD_5', 24, 2, 'string'],
-    ['FIELD_6', 26, 4, 'string'],
-    ['FIELD_7', 30, 4, 'string'],
-    ['FIELD_8', 34, 4, 'string'],
+    ['FIELD_6', 26, 4, 'integer', 0],
+    ['FIELD_7', 30, 4, 'integer', None],
+    ['FIELD_8', 34, 4, 'float', None],
+    ['FIELD_9', 38, 4, 'float', 0.0],
 ]
 ```
 
-Field definition ```['FIELD_6', 26, 4, 'string']``` 
+Field definition ```['FIELD_6', 26, 4, 'integer', 0]``` 
 * 'FIELD_6' - field name
 * 26 - index of text line where the field starts (count starts from 0)
 * 4 - field length in characters 
 * string - field value type (allowed types: string, integer, float)
+* 0 - default value if empty in text line record
 
 
 Specified format parsers

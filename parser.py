@@ -13,8 +13,10 @@ class Parser:
         data = []
         for f in self.definition:
             parsed_val = self.substr(text_line, f[1], f[2]).strip()
-
-            data.append(self.convert(f[3], parsed_val))
+            if 5 == len(f):
+                data.append(self.convert(f[3], parsed_val, f[4]))
+            else:
+                data.append(self.convert(f[3], parsed_val))
 
         return data
 
@@ -26,19 +28,19 @@ class Parser:
 
         return fields
 
-    def parse_int(self, value, default=0):
-        try:
-            return int(float(value.strip()))
-        except:
-            return default
-
     def csv_from_array(self, array_data, delimiter=','):
         return delimiter.join(array_data)
 
     def array_from_csv(self, csv, delimiter=','):
         return csv.split(delimiter)
 
-    def parse_float(self, value, default=0.0):
+    def parse_int(self, value, default=None):
+        try:
+            return int(float(value.strip()))
+        except:
+            return default
+
+    def parse_float(self, value, default=None):
         try:
             return float(value.strip())
         except:
@@ -47,13 +49,13 @@ class Parser:
     def substr(self, text, start, length):
         return text[start:start + length]
 
-    def convert(self, value_type, string_value):
+    def convert(self, value_type, string_value, default_value=None):
         if 'string' == value_type:
             return string_value
         elif 'integer' == value_type:
-            return self.parse_int(string_value, 0)
+            return self.parse_int(string_value, default_value)
         elif 'float' == value_type:
-            return self.parse_float(string_value, 0.0)
+            return self.parse_float(string_value, default_value)
         else:
             return string_value
 
@@ -65,5 +67,6 @@ class Parser:
     """
         convert array to text line according to the definition
     """
+
     def format(self, array_data):
         raise NotImplementedError()
