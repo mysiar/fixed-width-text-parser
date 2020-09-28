@@ -6,6 +6,6 @@ test:
 .PHONY: test
 
 lint:
-	pylint *.py
+	pylint *.py --ignore-patterns=test_.*?py,__init*
 .PHONY: lint
 
