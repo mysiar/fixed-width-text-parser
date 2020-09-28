@@ -31,7 +31,7 @@ class Sps21ParserTest(unittest.TestCase):
         self.assertEqual(265, data[13])
         self.assertEqual('120558', data[14])
 
-    def test_parse_wrong_record(self):
+    def test_parse_wrong_record_point(self):
         parser = Sps21Parser()
         record = 'B  21528.00  27830.00  1P1             0       756755.8 2561875.5 138.1265120558'
 
@@ -51,7 +51,7 @@ class Sps21ParserTest(unittest.TestCase):
         with self.assertRaises(Exception):
             parser.format([])
 
-    def test_csv(self):
+    def test_csv_point(self):
         parser = Sps21Parser()
 
         data = parser.get_fields_point()
@@ -82,6 +82,24 @@ class Sps21ParserTest(unittest.TestCase):
         self.assertEqual(18875.00, data[12])
         self.assertEqual(19743.00, data[13])
         self.assertEqual(1, data[14])
+
+    def test_parse_wrong_record_relation(self):
+        parser = Sps21Parser()
+        record = 'B  1001   8287311  19248.00  27516.001    1  4351  27023.00  18875.00  19743.001'
+
+        data = parser.parse_relation(record)
+        self.assertIsNone(data)
+
+    def test_csv_relation(self):
+        parser = Sps21Parser()
+
+        data = parser.get_fields_relation()
+        csv = parser.csv_from_array(data)
+
+        self.assertEqual(
+            'RECORD_ID,TAPE_NUMBER,RECORD_NUMBER,RECORD_INCREMENT,INSTRUMENT_CODE,S_LINE,POINT,POINT_IDX,FROM_CHANNEL,TO_CHANNEL,CHANNEL_INCREMENT,R_LINE,FROM_RECEIVER,TO_RECEIVER,RECEIVER_IDX',
+            csv
+        )
 
 
 if __name__ == '__main__':
