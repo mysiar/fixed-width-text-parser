@@ -173,3 +173,22 @@ class Sps00Parser(Parser):
     """
 
     pass
+
+
+class Point:
+    def __init__(self, data_array):
+        self.type = data_array[0]
+        self.line = data_array[1]
+        self.point = data_array[2]
+        self.point_idx = data_array[3]
+        self.point_code = data_array[4]
+        self.static_cor = data_array[5]
+        self.point_depth = data_array[6]
+        self.datum = data_array[7]
+        self.uphole_time = data_array[8]
+        self.water_depth = data_array[9]
+        self.easting = data_array[10]
+        self.northing = data_array[11]
+        self.elevation = data_array[12]
+        self.day_of_year = data_array[13]
+        self.time = data_array[14]
