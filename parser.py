@@ -111,6 +111,8 @@ class Parser:
         :return:
         """
         if value_type == 'string':
+            if len(string_value) == 0:
+                return default_value
             return string_value
         elif value_type == 'integer':
             return self.parse_int(string_value, default_value)

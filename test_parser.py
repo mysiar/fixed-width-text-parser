@@ -11,6 +11,8 @@ definition = [
     ['FIELD_7', 30, 4, 'integer', None],
     ['FIELD_8', 34, 4, 'float', None],
     ['FIELD_9', 38, 4, 'float', 0.0],
+    ['FIELD_10', 42, 2, 'string', None],
+    ['FIELD_11', 44, 2, 'string', ''],
 ]
 
 
@@ -37,13 +39,16 @@ class ParserTest(unittest.TestCase):
         self.assertEqual(None, data[6])
         self.assertEqual(None, data[7])
         self.assertEqual(0.0, data[8])
+        self.assertEqual(None, data[9])
+        self.assertEqual('', data[10])
+
 
     def test_csv_from_array(self):
         parser = Parser(definition)
 
         data = parser.get_fields()
         csv = parser.csv_from_array(data)
-        self.assertEqual('FIELD_1,FIELD_2,FIELD_3,FIELD_4,FIELD_5,FIELD_6,FIELD_7,FIELD_8,FIELD_9', csv)
+        self.assertEqual('FIELD_1,FIELD_2,FIELD_3,FIELD_4,FIELD_5,FIELD_6,FIELD_7,FIELD_8,FIELD_9,FIELD_10,FIELD_11', csv)
 
     def test_array_from_csv(self):
         parser = Parser(definition)

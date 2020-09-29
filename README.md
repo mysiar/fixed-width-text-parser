@@ -28,6 +28,8 @@ Field definition ```['FIELD_6', 26, 4, 'integer', 0]```
 * string - field value type (allowed types: string, integer, float)
 * 0 - default value if empty in text line record
 
+For every data type default value is always None if field results as empty string.
+For every data type it is possible to set default value in format definition.
 
 ### Specific format parsers
 * **Sps21Parser** - SPS format version num.     SPS 2.1, JAN2006
