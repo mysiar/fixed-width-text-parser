@@ -1,7 +1,7 @@
 """
     SPS Parser
 """
-from parser import Parser
+from Parser.Parser import Parser
 
 SRC_DATA_RECORD = 'S'
 RCV_DATA_RECORD = 'R'
@@ -109,6 +109,11 @@ class Sps21Parser(Parser):
             return
         self.set_definition(sps21point)
         return self.parse(text_line)
+
+    def parse_point2obj(self, text_line):
+        data = self.parse_point(text_line)
+
+        return Point(data)
 
     def parse_relation(self, text_line):
         """

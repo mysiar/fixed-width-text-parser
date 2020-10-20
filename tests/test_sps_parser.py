@@ -1,5 +1,5 @@
 import unittest
-from sps_parser import Sps21Parser
+from Seismic.SpsParser import Sps21Parser
 
 
 class Sps21ParserTest(unittest.TestCase):
@@ -30,6 +30,28 @@ class Sps21ParserTest(unittest.TestCase):
         self.assertEqual(138.1, data[12])
         self.assertEqual(265, data[13])
         self.assertEqual('120558', data[14])
+
+    def test_parse_point2obj(self):
+        parser = Sps21Parser()
+        record = 'S  21528.00  27830.00  1P1             0       756755.8 2561875.5 138.1265120558'
+
+        obj = parser.parse_point2obj(record)
+
+        self.assertEqual('S', obj.type)
+        self.assertEqual(21528.00, obj.line)
+        self.assertEqual(27830.00, obj.point)
+        self.assertEqual(1, obj.point_idx)
+        self.assertEqual('P1', obj.point_code)
+        self.assertEqual(None, obj.static_cor)
+        self.assertEqual(None, obj.point_depth)
+        self.assertEqual(None, obj.datum)
+        self.assertEqual(0, obj.uphole_time)
+        self.assertEqual(None, obj.water_depth)
+        self.assertEqual(756755.8, obj.easting)
+        self.assertEqual(2561875.5, obj.northing)
+        self.assertEqual(138.1, obj.elevation)
+        self.assertEqual(265, obj.day_of_year)
+        self.assertEqual('120558', obj.time)
 
     def test_parse_wrong_record_point(self):
         parser = Sps21Parser()

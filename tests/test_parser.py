@@ -1,5 +1,5 @@
 import unittest
-from parser import Parser
+from Parser.Parser import Parser
 
 definition = [
     ['FIELD_1', 0, 1, 'string'],

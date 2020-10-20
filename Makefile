@@ -1,8 +1,17 @@
 SHELL := /bin/bash
 
+
+ifeq ($(uname_S), Windows)
+    venv\Scripts\activate.bat
+endif
+
+ifeq ($(uname_S), Linux)
+    . venv/bin/activate
+endif
+
+
 test:
-	. venv/bin/activate
-	python -m unittest discover
+	python -m unittest discover tests
 .PHONY: test
 
 lint:
