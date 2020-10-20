@@ -168,16 +168,14 @@ class Sps21Parser(Parser):
 # H26 5678901234567890123456789012345678901234567890123456789012345678901234567890
 # S3762                39611A2     7.2   0  64.8 454773.4 3008241.9  -0.2177042821
 # S3762                39591A2     7.2   0  64.7 454762.9 3008193.0  -0.2177042841
-sps00point = []
-sps00relation = []
-
-
-class Sps00Parser(Parser):
-    """
-        SPS Parser of first version
-    """
-
-    pass
+# sps00point = []
+# sps00relation = []
+#
+#
+# class Sps00Parser(Parser):
+#     """
+#         SPS Parser of first version
+#     """
 
 
 class Point:
