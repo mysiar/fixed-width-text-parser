@@ -1,5 +1,5 @@
 import unittest
-from FixedWidthTextParser.Seismic.VibratorParser import ApsParser
+from FixedWidthTextParser.Seismic.VibratorParser import ApsParser, CogParser
 
 
 class ApsParserTest(unittest.TestCase):
@@ -63,3 +63,46 @@ class ApsParserTest(unittest.TestCase):
         self.assertEqual(2531118.2, obj.northing)
         self.assertEqual(121.6, obj.elevation)
 
+
+class CogParserTest(unittest.TestCase):
+    def test_parse_point(self):
+        parser = CogParser()
+
+        record = 'H26 5678901234567890123456789012345678901234567890123456789012345678901234567890'
+        data = parser.parse_point(record)
+
+        self.assertIsNone(data)
+
+        record = 'C         19064.0 25360.01 3  725883.0  2531118.2  121.6          2.5'
+        data = parser.parse_point(record)
+
+        self.assertEqual('C', data[0])
+        self.assertEqual(19064.0, data[1])
+        self.assertEqual(25360.0, data[2])
+        self.assertEqual(1, data[3])
+        self.assertEqual(3, data[4])
+        self.assertEqual(725883.0, data[5])
+        self.assertEqual(2531118.2, data[6])
+        self.assertEqual(121.6, data[7])
+        self.assertEqual(2.5, data[8])
+
+    def test_parse_point2obj(self):
+        parser = CogParser()
+
+        record = 'H26 5678901234567890123456789012345678901234567890123456789012345678901234567890'
+        obj = parser.parse_point2obj(record)
+
+        self.assertIsNone(obj)
+
+        record = 'C         19064.0 25360.01 3  725883.0  2531118.2  121.6          2.5'
+        obj = parser.parse_point2obj(record)
+
+        self.assertEqual('C', obj.type)
+        self.assertEqual(19064.0, obj.line)
+        self.assertEqual(25360.0, obj.point)
+        self.assertEqual(1, obj.point_idx)
+        self.assertEqual(3, obj.cog_state)
+        self.assertEqual(725883.0, obj.easting)
+        self.assertEqual(2531118.2, obj.northing)
+        self.assertEqual(121.6, obj.elevation)
+        self.assertEqual(2.5, obj.deviation)
