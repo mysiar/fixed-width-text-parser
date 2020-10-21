@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="FixedWidthTextParser",
-    version="0.1.0",
+    version="0.1.1",
     author="Piotr Synowiec",
     author_email="psynowiec@gmail.com",
     description="Fixed width text parser",

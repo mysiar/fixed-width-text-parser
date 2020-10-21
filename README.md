@@ -4,6 +4,8 @@ Parsing different defined text formats to array data
 
 **Parser** - parse anything according to the format definition
 
+For use cases check **_tests_** folder
+
 Format definition:
  
 ```python
@@ -41,7 +43,6 @@ For every data type it is possible to set default value in format definition.
 
 * [SPS](doc/SPS.md)
 * [Vibrator](doc/Vibrator.md)
-
 
 ### References
 * [SPS - Shell Processing Support](https://en.wikipedia.org/wiki/Shell_Processing_Support)
