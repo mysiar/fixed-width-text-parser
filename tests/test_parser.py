@@ -1,5 +1,6 @@
 import unittest
 from FixedWidthTextParser.Parser import Parser
+from pprint import pprint
 
 definition = [
     ['FIELD_1', 0, 1, 'string'],
@@ -42,13 +43,13 @@ class ParserTest(unittest.TestCase):
         self.assertEqual(None, data[9])
         self.assertEqual('', data[10])
 
-
     def test_csv_from_array(self):
         parser = Parser(definition)
 
         data = parser.get_fields()
         csv = parser.csv_from_array(data)
-        self.assertEqual('FIELD_1,FIELD_2,FIELD_3,FIELD_4,FIELD_5,FIELD_6,FIELD_7,FIELD_8,FIELD_9,FIELD_10,FIELD_11', csv)
+        self.assertEqual('FIELD_1,FIELD_2,FIELD_3,FIELD_4,FIELD_5,FIELD_6,FIELD_7,FIELD_8,FIELD_9,FIELD_10,FIELD_11',
+                         csv)
 
     def test_array_from_csv(self):
         parser = Parser(definition)
@@ -58,6 +59,24 @@ class ParserTest(unittest.TestCase):
 
         self.assertEqual('FIELD_1', data[0])
         self.assertEqual('FIELD_8', data[7])
+
+    def test_parse2object(self):
+        parser = Parser(definition)
+        record = 'S  21528.00  27830.00  1P1             0       756755.8 2561875.5 138.1265120558'
+
+        obj = parser.parse2object(record)
+
+        self.assertEqual('S', obj.FIELD_1)
+        self.assertEqual(21528.0, obj.FIELD_2)
+        self.assertEqual(27830.0, obj.FIELD_3)
+        self.assertEqual(1, obj.FIELD_4)
+        self.assertEqual('P1', obj.FIELD_5)
+        self.assertEqual(0, obj.FIELD_6)
+        self.assertEqual(None, obj.FIELD_7)
+        self.assertEqual(None, obj.FIELD_8)
+        self.assertEqual(0.0, obj.FIELD_9)
+        self.assertEqual(None, obj.FIELD_10)
+        self.assertEqual('', obj.FIELD_11)
 
 
 if __name__ == '__main__':

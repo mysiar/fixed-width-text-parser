@@ -39,6 +39,17 @@ class Parser:
 
         return data
 
+    def parse2object(self, text_line):
+        self.is_definition()
+        key = 0
+        data = self.parse(text_line)
+        obj = ParsedObject()
+        for field in self.definition:
+            setattr(obj, field[0], data[key])
+            key += 1
+
+        return obj
+
     def get_fields(self):
         """
         Get definition fields name
@@ -135,3 +146,7 @@ class Parser:
         Converts array to text line according to the definition
         """
         raise NotImplementedError()
+
+
+class ParsedObject:
+    pass
