@@ -113,7 +113,10 @@ class Sps21Parser(Parser):
     def parse_point2obj(self, text_line):
         data = self.parse_point(text_line)
 
-        return Point(data)
+        if data is not None:
+            return Point(data)
+        else:
+            return
 
     def parse_relation(self, text_line):
         """

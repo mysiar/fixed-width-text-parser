@@ -53,6 +53,11 @@ class Sps21ParserTest(unittest.TestCase):
         self.assertEqual(265, obj.day_of_year)
         self.assertEqual('120558', obj.time)
 
+        record = 'H  21528.00  27830.00  1P1             0       756755.8 2561875.5 138.1265120558'
+
+        obj = parser.parse_point2obj(record)
+        self.assertIsNone(obj)
+
     def test_parse_wrong_record_point(self):
         parser = Sps21Parser()
         record = 'B  21528.00  27830.00  1P1             0       756755.8 2561875.5 138.1265120558'
