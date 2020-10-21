@@ -34,6 +34,8 @@ For every data type it is possible to set default value in format definition.
 ### Specific format parsers
 * **Seismic.SpsParser.Sps21Parser** - SPS format version num.     SPS 2.1, JAN2006
 * **Seismic.VibratorParser.ApsParser** 
+* **Seismic.VibratorParser.CogParser** 
+* **Seismic.VibratorParser.VapsParser** 
 
 ### File formats
 
