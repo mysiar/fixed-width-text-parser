@@ -18,6 +18,7 @@ lint:
 .PHONY: lint
 
 dist:
+	rm -rf build dist FixedWidthTextParser.egg-info
 	python3 setup.py sdist bdist_wheel
 .PHONY: dist
 
