@@ -1,5 +1,5 @@
 import unittest
-from Parser.Parser import Parser
+from FixedWidthTextParser.Parser import Parser
 
 definition = [
     ['FIELD_1', 0, 1, 'string'],

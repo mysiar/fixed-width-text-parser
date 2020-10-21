@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="fixed-width-text-parser",
+    name="FixedWidthTextParser",
     version="0.0.1",
     author="Piotr Synowiec",
     author_email="psynowiec@gmail.com",

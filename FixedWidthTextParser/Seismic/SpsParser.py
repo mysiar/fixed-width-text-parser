@@ -1,7 +1,7 @@
 """
     SPS Parser
 """
-from Parser.Parser import Parser
+from FixedWidthTextParser.Parser import Parser
 
 SRC_DATA_RECORD = 'S'
 RCV_DATA_RECORD = 'R'

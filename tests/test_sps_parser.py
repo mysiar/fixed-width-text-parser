@@ -1,5 +1,5 @@
 import unittest
-from Seismic.SpsParser import Sps21Parser
+from FixedWidthTextParser.Seismic.SpsParser import Sps21Parser
 
 
 class Sps21ParserTest(unittest.TestCase):
