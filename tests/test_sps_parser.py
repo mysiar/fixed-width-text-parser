@@ -8,7 +8,9 @@ class Sps21ParserTest(unittest.TestCase):
         fields = parser.get_fields_point()
 
         self.assertEqual(15, len(fields))
-        self.assertEqual('EASTING', fields[10])
+        self.assertEqual(['RECORD_ID', 'LINE', 'POINT', 'POINT_IDX', 'POINT_CODE', 'STATIC_COR', 'POINT_DEPTH', 'DATUM',
+                          'UPHOLE_TIME', 'WATER_DEPTH', 'EASTING', 'NORTHING', 'ELEVATION', 'DAY_OF_YEAR', 'TIME'],
+                         fields)
 
     def test_parse_point(self):
         parser = Sps21Parser()

@@ -31,23 +31,23 @@ HEADER_RECORD = 'H'
 # H26 5678901234567890123456789012345678901234567890123456789012345678901234567890
 # S   3762.00   3961.00  1A2     7.2   0    64.8 454773.4 3008241.9  -0.2177042821
 # S   3762.00   3959.00  1A2     7.2   0    64.7 454762.9 3008193.0  -0.2177042841
-sps21point = [
-    ['RECORD_ID', 0, 1, 'string'],
-    ['LINE', 1, 10, 'float'],
-    ['POINT', 11, 10, 'float'],
-    ['POINT_IDX', 23, 1, 'integer', 1],
-    ['POINT_CODE', 24, 2, 'string'],
-    ['STATIC_COR', 26, 4, 'integer'],
-    ['POINT_DEPTH', 30, 4, 'float'],
-    ['DATUM', 34, 4, 'integer'],
-    ['UPHOLE_TIME', 38, 2, 'integer'],
-    ['WATER_DEPTH', 40, 6, 'float'],
-    ['EASTING', 46, 9, 'float'],
-    ['NORTHING', 55, 10, 'float'],
-    ['ELEVATION', 65, 6, 'float'],
-    ['DAY_OF_YEAR', 71, 3, 'integer'],
-    ['TIME', 74, 6, 'string'],
-]
+sps21point = {
+    'RECORD_ID': [0, 1, 'string'],
+    'LINE': [1, 10, 'float'],
+    'POINT': [11, 10, 'float'],
+    'POINT_IDX': [23, 1, 'integer', 1],
+    'POINT_CODE': [24, 2, 'string'],
+    'STATIC_COR': [26, 4, 'integer'],
+    'POINT_DEPTH': [30, 4, 'float'],
+    'DATUM': [34, 4, 'integer'],
+    'UPHOLE_TIME': [38, 2, 'integer'],
+    'WATER_DEPTH': [40, 6, 'float'],
+    'EASTING': [46, 9, 'float'],
+    'NORTHING': [55, 10, 'float'],
+    'ELEVATION': [65, 6, 'float'],
+    'DAY_OF_YEAR': [71, 3, 'integer'],
+    'TIME': [74, 6, 'string'],
+}
 
 # H00 SPS format version number   SPS 2.1, JAN2006
 # H26 ---------------------------------------------------------------------------
@@ -74,23 +74,23 @@ sps21point = [
 # H26 14    Receiver Index            80-80  I1      1-9            1       -
 # X  1001   8287311  19248.00  27516.001    1  4351  27023.00  18875.00  19743.001
 # X  1001   8287311  19248.00  27516.001  436  8711  27039.00  18873.00  19743.001
-sps21relation = [
-    ['RECORD_ID', 0, 1, 'string'],
-    ['TAPE_NUMBER', 1, 6, 'string'],
-    ['RECORD_NUMBER', 7, 8, 'integer'],
-    ['RECORD_INCREMENT', 15, 1, 'integer', 1],
-    ['INSTRUMENT_CODE', 16, 1, 'string', '1'],
-    ['S_LINE', 17, 10, 'float'],
-    ['POINT', 27, 10, 'float'],
-    ['POINT_IDX', 37, 1, 'integer'],
-    ['FROM_CHANNEL', 38, 5, 'integer'],
-    ['TO_CHANNEL', 43, 5, 'integer'],
-    ['CHANNEL_INCREMENT', 48, 1, 'float'],
-    ['R_LINE', 49, 10, 'float'],
-    ['FROM_RECEIVER', 59, 10, 'float'],
-    ['TO_RECEIVER', 69, 10, 'float'],
-    ['RECEIVER_IDX', 79, 1, 'integer'],
-]
+sps21relation = {
+    'RECORD_ID': [0, 1, 'string'],
+    'TAPE_NUMBER': [1, 6, 'string'],
+    'RECORD_NUMBER': [7, 8, 'integer'],
+    'RECORD_INCREMENT': [15, 1, 'integer', 1],
+    'INSTRUMENT_CODE': [16, 1, 'string', '1'],
+    'S_LINE': [17, 10, 'float'],
+    'POINT': [27, 10, 'float'],
+    'POINT_IDX': [37, 1, 'integer'],
+    'FROM_CHANNEL': [38, 5, 'integer'],
+    'TO_CHANNEL': [43, 5, 'integer'],
+    'CHANNEL_INCREMENT': [48, 1, 'float'],
+    'R_LINE': [49, 10, 'float'],
+    'FROM_RECEIVER': [59, 10, 'float'],
+    'TO_RECEIVER': [69, 10, 'float'],
+    'RECEIVER_IDX': [79, 1, 'integer'],
+}
 
 
 class Sps21Parser(Parser):
@@ -104,7 +104,7 @@ class Sps21Parser(Parser):
         :param text_line:
         :return:
         """
-        record_type = self.substr(text_line, sps21point[0][1], sps21point[0][2]).strip()
+        record_type = self.substr(text_line, sps21point['RECORD_ID'][0], sps21point['RECORD_ID'][1]).strip()
         if record_type not in (SRC_DATA_RECORD, RCV_DATA_RECORD):
             return
         self.set_definition(sps21point)
@@ -124,7 +124,7 @@ class Sps21Parser(Parser):
         :param text_line:
         :return:
         """
-        record_type = self.substr(text_line, sps21point[0][1], sps21point[0][2]).strip()
+        record_type = self.substr(text_line, sps21point['RECORD_ID'][0], sps21point['RECORD_ID'][1]).strip()
         if record_type not in REL_DATA_RECORD:
             return
 

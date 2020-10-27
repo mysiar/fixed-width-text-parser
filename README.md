@@ -10,20 +10,20 @@ Format definition:
  
 ```python
 
-definition = [
-    ['FIELD_1', 0, 1, 'string'],
-    ['FIELD_2', 1, 10, 'float'],
-    ['FIELD_3', 11, 10, 'float'],
-    ['FIELD_4', 23, 1, 'integer'],
-    ['FIELD_5', 24, 2, 'string'],
-    ['FIELD_6', 26, 4, 'integer', 0],
-    ['FIELD_7', 30, 4, 'integer', None],
-    ['FIELD_8', 34, 4, 'float', None],
-    ['FIELD_9', 38, 4, 'float', 0.0],
-]
+definition = {
+    'FIELD_1': [0, 1, 'string'],
+    'FIELD_2': [1, 10, 'float'],
+    'FIELD_3': [11, 10, 'float'],
+    'FIELD_4': [23, 1, 'integer'],
+    'FIELD_5': [24, 2, 'string'],
+    'FIELD_6': [26, 4, 'integer', 0],
+    'FIELD_7': [30, 4, 'integer', None],
+    'FIELD_8': [34, 4, 'float', None],
+    'FIELD_9': [38, 4, 'float', 0.0],
+}
 ```
 
-Field definition ```['FIELD_6', 26, 4, 'integer', 0]``` 
+Field definition ```'FIELD_6': [26, 4, 'integer', 0]``` 
 * 'FIELD_6' - field name
 * 26 - index of text line where the field starts (count starts from 0)
 * 4 - field length in characters 
