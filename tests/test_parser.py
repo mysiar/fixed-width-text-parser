@@ -1,20 +1,19 @@
 import unittest
 from FixedWidthTextParser.Parser import Parser
-from pprint import pprint
 
-definition = [
-    ['FIELD_1', 0, 1, 'string'],
-    ['FIELD_2', 1, 10, 'float'],
-    ['FIELD_3', 11, 10, 'float'],
-    ['FIELD_4', 23, 1, 'integer'],
-    ['FIELD_5', 24, 2, 'string'],
-    ['FIELD_6', 26, 4, 'integer', 0],
-    ['FIELD_7', 30, 4, 'integer', None],
-    ['FIELD_8', 34, 4, 'float', None],
-    ['FIELD_9', 38, 4, 'float', 0.0],
-    ['FIELD_10', 42, 2, 'string', None],
-    ['FIELD_11', 44, 2, 'string', ''],
-]
+definition = {
+    'FIELD_1': [0, 1, 'string'],
+    'FIELD_2': [1, 10, 'float'],
+    'FIELD_3': [11, 10, 'float'],
+    'FIELD_4': [23, 1, 'integer'],
+    'FIELD_5': [24, 2, 'string'],
+    'FIELD_6': [26, 4, 'integer', 0],
+    'FIELD_7': [30, 4, 'integer', None],
+    'FIELD_8': [34, 4, 'float', None],
+    'FIELD_9': [38, 4, 'float', 0.0],
+    'FIELD_10': [42, 2, 'string', None],
+    'FIELD_11': [44, 2, 'string', ''],
+}
 
 
 class ParserTest(unittest.TestCase):

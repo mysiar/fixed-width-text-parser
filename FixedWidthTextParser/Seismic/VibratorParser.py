@@ -32,26 +32,26 @@ from FixedWidthTextParser.Parser import Parser
 #
 # A         19064.0 25360.01222 70   1   2101863 71 56 72 725883.0 2531118.2 121.6
 
-aps = [
-    ['RECORD_ID', 0, 1, 'string', None],
-    ['LINE', 1, 16, 'float', None],
-    ['POINT', 17, 8, 'float', None],
-    ['POINT_IDX', 25, 1, 'integer', 1],
-    ['VIB_FLEET_NO', 26, 1, 'integer', None],
-    ['VIB_NO', 27, 2, 'integer', None],
-    ['VIB_DRIVE_LEVEL', 29, 3, 'integer', None],
-    ['PHASE_AVG', 32, 4, 'integer', None],
-    ['PHASE_PEAK', 36, 4, 'integer', None],
-    ['DIST_AVG', 40, 2, 'integer', None],
-    ['DIST_PEAK', 42, 2, 'integer', None],
-    ['FORCE_AVG', 44, 3, 'integer', None],
-    ['FORCE_PEAK', 46, 3, 'integer', None],
-    ['STIFF', 49, 3, 'integer', None],
-    ['VISC', 52, 3, 'integer', None],
-    ['EASTING', 55, 9, 'float', None],
-    ['NORTHING', 64, 10, 'float', None],
-    ['ELEVATION', 74, 6, 'float', None],
-]
+aps = {
+    'RECORD_ID': [0, 1, 'string', None],
+    'LINE': [1, 16, 'float', None],
+    'POINT': [17, 8, 'float', None],
+    'POINT_IDX': [25, 1, 'integer', 1],
+    'VIB_FLEET_NO': [26, 1, 'integer', None],
+    'VIB_NO': [27, 2, 'integer', None],
+    'VIB_DRIVE_LEVEL': [29, 3, 'integer', None],
+    'PHASE_AVG': [32, 4, 'integer', None],
+    'PHASE_PEAK': [36, 4, 'integer', None],
+    'DIST_AVG': [40, 2, 'integer', None],
+    'DIST_PEAK': [42, 2, 'integer', None],
+    'FORCE_AVG': [44, 3, 'integer', None],
+    'FORCE_PEAK': [46, 3, 'integer', None],
+    'STIFF': [49, 3, 'integer', None],
+    'VISC': [52, 3, 'integer', None],
+    'EASTING': [55, 9, 'float', None],
+    'NORTHING': [64, 10, 'float', None],
+    'ELEVATION': [74, 6, 'float', None],
+}
 
 
 class ApsParser(Parser):
@@ -60,7 +60,7 @@ class ApsParser(Parser):
         self.set_definition(aps)
 
     def parse_point(self, text_line):
-        record_type = self.substr(text_line, aps[0][1], aps[0][2]).strip()
+        record_type = self.substr(text_line, aps['RECORD_ID'][0], aps['RECORD_ID'][1]).strip()
 
         if record_type != 'A':
             return None
@@ -128,17 +128,17 @@ class ApsPoint:
 #
 # C         19064.0 25360.01 3  725883.0  2531118.2  121.6          2.5
 
-cog = [
-    ['RECORD_ID', 0, 1, 'string', None],
-    ['LINE', 1, 16, 'float', None],
-    ['POINT', 17, 8, 'float', None],
-    ['POINT_IDX', 25, 1, 'integer', 1],
-    ['COG_STATE', 27, 1, 'integer', None],
-    ['EASTING', 29, 9, 'float', None],
-    ['NORTHING', 39, 10, 'float', None],
-    ['ELEVATION', 50, 6, 'float', None],
-    ['DEVIATION', 59, 10, 'float', None],
-]
+cog = {
+    'RECORD_ID': [0, 1, 'string', None],
+    'LINE': [1, 16, 'float', None],
+    'POINT': [17, 8, 'float', None],
+    'POINT_IDX': [25, 1, 'integer', 1],
+    'COG_STATE': [27, 1, 'integer', None],
+    'EASTING': [29, 9, 'float', None],
+    'NORTHING': [39, 10, 'float', None],
+    'ELEVATION': [50, 6, 'float', None],
+    'DEVIATION': [59, 10, 'float', None],
+}
 
 
 class CogParser(Parser):
@@ -147,7 +147,7 @@ class CogParser(Parser):
         self.set_definition(cog)
 
     def parse_point(self, text_line):
-        record_type = self.substr(text_line, cog[0][1], cog[0][2]).strip()
+        record_type = self.substr(text_line, cog['RECORD_ID'][0], cog['RECORD_ID'][1]).strip()
 
         if record_type != 'C':
             return None
@@ -231,52 +231,52 @@ class CogPoint:
 #
 # A         19080.0 25206.01222 70   1  -3111864 73 55 73 723954.7 2531266.3 124.4     1 122 1                   1T 4.1294035708 1.1    1287187046624000GPGGA,235726.00,2252.45969167,N,05310.97627209,E,4,10,1.1,127.602,M,-33.537,M,9.0,0002*67
 
-vaps = [
-    ['RECORD_ID', 0, 1, 'string', None],
-    ['LINE', 1, 16, 'float', None],
-    ['POINT', 17, 8, 'float', None],
-    ['POINT_IDX', 25, 1, 'integer', 1],
-    ['VIB_FLEET_NO', 26, 1, 'integer', None],
-    ['VIB_NO', 27, 2, 'integer', None],
-    ['VIB_DRIVE_LEVEL', 29, 3, 'integer', None],
-    ['PHASE_AVG', 32, 4, 'integer', None],
-    ['PHASE_PEAK', 36, 4, 'integer', None],
-    ['DIST_AVG', 40, 2, 'integer', None],
-    ['DIST_PEAK', 42, 2, 'integer', None],
-    ['FORCE_AVG', 44, 3, 'integer', None],
-    ['FORCE_PEAK', 46, 3, 'integer', None],
-    ['STIFF', 49, 3, 'integer', None],
-    ['VISC', 52, 3, 'integer', None],
-    ['EASTING', 55, 9, 'float', None],
-    ['NORTHING', 64, 10, 'float', None],
-    ['ELEVATION', 74, 6, 'float', None],
-    ['SHOT_NO', 81, 5, 'integer', None],
-    ['ACQUISITION_NO', 86, 2, 'integer', None],
-    ['VIB_FLEET_NO2', 88, 2, 'integer', None],
-    ['VIB_STATUS_CODE', 90, 2, 'integer', None],
-    ['MASS_1_WARNING', 93, 1, 'string', None],
-    ['MASS_2_WARNING', 94, 1, 'string', None],
-    ['MASS_3_WARNING', 95, 1, 'string', None],
-    ['PLATE_1_WARNING', 99, 1, 'string', None],
-    ['PLATE_2_WARNING', 100, 1, 'string', None],
-    ['PLATE_3_WARNING', 101, 1, 'string', None],
-    ['PLATE_4_WARNING', 102, 1, 'string', None],
-    ['PLATE_5_WARNING', 103, 1, 'string', None],
-    ['PLATE_6_WARNING', 104, 1, 'string', None],
-    ['FORCE_OVERLOAD', 105, 1, 'string', None],
-    ['PRESSURE_OVERLOAD', 106, 1, 'string', None],
-    ['MASS_OVERLOAD', 107, 1, 'string', None],
-    ['VALVE_OVERLOAD', 108, 1, 'string', None],
-    ['EXCITATION_OVERLOAD', 109, 1, 'string', None],
-    ['STACKING_FOLDER', 110, 2, 'integer', None],
-    ['COMPUTATION_DOMAIN', 112, 1, 'string', None],
-    ['VE_VERSION', 113, 4, 'string', None],
-    ['DAY_OF_YEAR', 117, 3, 'integer', None],
-    ['TIME', 120, 6, 'string', None],
-    ['HDOP', 126, 4, 'float', None],
-    ['TB_DATE', 130, 20, 'integer', None],
-    ['GPGGA_MESSAGE', 150, 89, 'string', None],
-]
+vaps = {
+    'RECORD_ID':  [ 0, 1, 'string', None],
+    'LINE':  [ 1, 16, 'float', None],
+    'POINT':  [ 17, 8, 'float',   None],
+    'POINT_IDX':  [ 25, 1, 'integer', 1],
+    'VIB_FLEET_NO':  [ 26, 1, 'integer',   None],
+    'VIB_NO':  [ 27, 2, 'integer', None],
+    'VIB_DRIVE_LEVEL':  [ 29, 3, 'integer', None],
+    'PHASE_AVG':  [ 32, 4, 'integer',None],
+    'PHASE_PEAK':  [ 36, 4, 'integer', None],
+    'DIST_AVG':  [ 40, 2, 'integer',None],
+    'DIST_PEAK':  [ 42, 2, 'integer', None],
+    'FORCE_AVG':  [ 44, 3, 'integer', None],
+    'FORCE_PEAK':  [ 46, 3, 'integer', None],
+    'STIFF':  [ 49, 3, 'integer',None],
+    'VISC':  [ 52, 3, 'integer', None],
+    'EASTING':  [ 55, 9, 'float', None],
+    'NORTHING':  [ 64, 10, 'float', None],
+    'ELEVATION':  [ 74, 6, 'float', None],
+    'SHOT_NO':  [ 81, 5, 'integer', None],
+    'ACQUISITION_NO':  [ 86, 2, 'integer', None],
+    'VIB_FLEET_NO2':  [ 88, 2, 'integer', None],
+    'VIB_STATUS_CODE':  [ 90, 2, 'integer', None],
+    'MASS_1_WARNING':  [ 93, 1, 'string', None],
+    'MASS_2_WARNING':  [ 94, 1, 'string', None],
+    'MASS_3_WARNING':  [ 95, 1, 'string', None],
+    'PLATE_1_WARNING':  [ 99, 1, 'string', None],
+    'PLATE_2_WARNING':  [ 100, 1, 'string', None],
+    'PLATE_3_WARNING':  [ 101, 1, 'string', None],
+    'PLATE_4_WARNING':  [ 102, 1, 'string', None],
+    'PLATE_5_WARNING':  [ 103, 1, 'string', None],
+    'PLATE_6_WARNING':  [ 104, 1, 'string', None],
+    'FORCE_OVERLOAD':  [ 105, 1, 'string', None],
+    'PRESSURE_OVERLOAD':  [ 106, 1, 'string', None],
+    'MASS_OVERLOAD':  [ 107, 1, 'string', None],
+    'VALVE_OVERLOAD':  [ 108, 1, 'string', None],
+    'EXCITATION_OVERLOAD':  [ 109, 1, 'string', None],
+    'STACKING_FOLDER':  [ 110, 2, 'integer', None],
+    'COMPUTATION_DOMAIN':  [ 112, 1, 'string', None],
+    'VE_VERSION':  [ 113, 4, 'string', None],
+    'DAY_OF_YEAR':  [ 117, 3, 'integer', None],
+    'TIME':  [ 120, 6, 'string', None],
+    'HDOP':  [ 126, 4, 'float', None],
+    'TB_DATE':  [ 130, 20, 'integer', None],
+    'GPGGA_MESSAGE':  [ 150, 89, 'string', None],
+}
 
 
 class VapsParser(Parser):
@@ -285,7 +285,7 @@ class VapsParser(Parser):
         self.set_definition(vaps)
 
     def parse_point(self, text_line):
-        record_type = self.substr(text_line, vaps[0][1], vaps[0][2]).strip()
+        record_type = self.substr(text_line, vaps['RECORD_ID'][0], vaps['RECORD_ID'][1]).strip()
 
         if record_type != 'A':
             return None

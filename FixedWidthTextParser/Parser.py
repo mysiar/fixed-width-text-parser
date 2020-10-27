@@ -31,11 +31,11 @@ class Parser:
         self.is_definition()
         data = []
         for field in self.definition:
-            parsed_val = self.substr(text_line, field[1], field[2]).strip()
-            if len(field) == 5:
-                data.append(self.convert(field[3], parsed_val, field[4]))
+            parsed_val = self.substr(text_line, self.definition[field][0], self.definition[field][1]).strip()
+            if len(self.definition[field]) == 4:
+                data.append(self.convert(self.definition[field][2], parsed_val, self.definition[field][3]))
             else:
-                data.append(self.convert(field[3], parsed_val))
+                data.append(self.convert(self.definition[field][2], parsed_val))
 
         return data
 
@@ -45,7 +45,7 @@ class Parser:
         data = self.parse(text_line)
         obj = ParsedObject()
         for field in self.definition:
-            setattr(obj, field[0], data[key])
+            setattr(obj, field, data[key])
             key += 1
 
         return obj
@@ -55,12 +55,7 @@ class Parser:
         Get definition fields name
         :return:
         """
-        self.is_definition()
-        fields = []
-        for field in self.definition:
-            fields.append(field[0])
-
-        return fields
+        return list(self.definition.keys())
 
     def csv_from_array(self, array_data, delimiter=','):
         """
