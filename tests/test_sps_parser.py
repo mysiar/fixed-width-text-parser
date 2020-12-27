@@ -1,5 +1,5 @@
 import unittest
-from FixedWidthTextParser.Seismic.SpsParser import Sps21Parser
+from FixedWidthTextParser.Seismic.SpsParser import Sps21Parser, Relation
 
 
 class Sps21ParserTest(unittest.TestCase):
@@ -111,6 +111,23 @@ class Sps21ParserTest(unittest.TestCase):
         self.assertEqual(18875.00, data[12])
         self.assertEqual(19743.00, data[13])
         self.assertEqual(1, data[14])
+
+        relation = Relation(data)
+        self.assertEqual('X', relation.type)
+        self.assertEqual('1001', relation.tape)
+        self.assertEqual(82873, relation.ffid)
+        self.assertEqual(1, relation.ffid_increment)
+        self.assertEqual('1', relation.instrument)
+        self.assertEqual(19248.00, relation.line)
+        self.assertEqual(27516.00, relation.point)
+        self.assertEqual(1, relation.point_idx)
+        self.assertEqual(1, relation.from_channel)
+        self.assertEqual(435, relation.to_channel)
+        self.assertEqual(1, relation.channel_increment)
+        self.assertEqual(27023.00, relation.rcv_line)
+        self.assertEqual(18875.00, relation.from_rcv)
+        self.assertEqual(19743.00, relation.to_rcv)
+        self.assertEqual(1, relation.rcv_idx)
 
     def test_parse_wrong_record_relation(self):
         parser = Sps21Parser()
