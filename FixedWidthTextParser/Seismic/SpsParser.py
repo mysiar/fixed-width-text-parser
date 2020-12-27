@@ -198,3 +198,22 @@ class Point:
         self.elevation = data_array[12]
         self.day_of_year = data_array[13]
         self.time = data_array[14]
+
+
+class Relation:
+    def __init__(self, data_array):
+        self.type = data_array[0]
+        self.tape = data_array[1]
+        self.ffid = data_array[2]
+        self.ffid_increment = data_array[3]
+        self.instrument = data_array[4]
+        self.line = data_array[5]
+        self.point = data_array[6]
+        self.point_idx = data_array[7]
+        self.from_channel = data_array[8]
+        self.to_channel = data_array[9]
+        self.channel_increment = data_array[10]
+        self.rcv_line = data_array[11]
+        self.from_rcv = data_array[12]
+        self.to_rcv = data_array[13]
+        self.rcv_idx = data_array[14]
