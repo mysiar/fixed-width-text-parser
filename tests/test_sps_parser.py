@@ -147,6 +147,16 @@ class Sps21ParserTest(unittest.TestCase):
             csv
         )
 
+    def test_parsing_empty_string(self):
+        parser = Sps21Parser()
+        record = ''
+
+        data = parser.parse_point(record)
+        self.assertIsNone(data)
+
+        data = parser.parse_relation(record)
+        self.assertIsNone(data)
+
 
 if __name__ == '__main__':
     unittest.main()

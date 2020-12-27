@@ -125,7 +125,7 @@ class Sps21Parser(Parser):
         :return:
         """
         record_type = self.substr(text_line, sps21point['RECORD_ID'][0], sps21point['RECORD_ID'][1]).strip()
-        if record_type not in REL_DATA_RECORD:
+        if REL_DATA_RECORD != record_type:
             return
 
         self.set_definition(sps21relation)
