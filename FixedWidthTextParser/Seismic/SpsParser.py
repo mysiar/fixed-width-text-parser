@@ -3,6 +3,11 @@
 """
 from FixedWidthTextParser.Parser import Parser
 
+
+class SpsParser(Parser):
+    pass
+
+
 SRC_DATA_RECORD = 'S'
 RCV_DATA_RECORD = 'R'
 REL_DATA_RECORD = 'X'
@@ -93,7 +98,7 @@ sps21relation = {
 }
 
 
-class Sps21Parser(Parser):
+class Sps21Parser(SpsParser):
     """
         SPS version 2.1 Parser
     """
