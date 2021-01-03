@@ -58,3 +58,33 @@ H26 14    Receiver Index            80-80  I1      1-9            1       -
 X  1001   8287311  19248.00  27516.001    1  4351  27023.00  18875.00  19743.001
 X  1001   8287311  19248.00  27516.001  436  8711  27039.00  18873.00  19743.001
 ```
+
+## Version 001, Oct 1990
+
+### Point record
+
+```
+H00 SPS format version num.         SPS001,08OCT1990 (SHELL EP 90-2935);
+H26
+H26 Item  Definition of field       Cols   Format  Min to Max     Default  Units
+H26 ----  -------------------       ----   ------  ----------     -------  -----
+H26 1     Record identification     1-1    A1      R or S         None     -
+H26 2     Line name (left just)     2-17   4A4     Free           None     -
+H26 3     Point number              18-25  2A4     Free           None     -
+H26 4     Point index               26-26  I1      1   9          1        -
+H26 5     Point code                27-28  A2      Free           None     -
+H26 6     Static correction         29-32  I4      -999 - 999     Blank    Msec
+H26 7     Point Depth               33-36  F4.1    0 - 99.9       None     Metre
+H26 8     Seismic datum             37-40  I4      -999 - 9999    None     Metre
+H26 9     Uphole time               41-42  I2      0 - 99         Blank    Msec
+H26 10    Water depth               43-46  F4.1    0 to 99.9/999  Blank    Metre
+H26 11    Map grid easting          47-55  F9.1    Free           None     metre
+H26 12    Map grid northing         56-65  F10.1   Free           None     metre
+H26 13    Map grid elevation        66-71  F6.1    -999.9 9999.9  None     metre
+H26 14    Day of Year               72-74  I3      1 999          None     -
+H26 15    Time hhmmss               75-80  3I2     000000 235959  None     -
+H26      1         2         3         4         5         6         7         8
+H26 5678901234567890123456789012345678901234567890123456789012345678901234567890
+S3762                39611A2     7.2   0  64.8 454773.4 3008241.9  -0.2177042821
+S3762                39591A2     7.2   0  64.7 454762.9 3008193.0  -0.2177042841
+```
