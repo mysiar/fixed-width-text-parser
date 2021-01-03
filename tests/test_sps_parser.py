@@ -158,10 +158,6 @@ class Sps21ParserTest(unittest.TestCase):
         self.assertIsNone(data)
 
 
-if __name__ == '__main__':
-    unittest.main()
-
-
 class Sps00ParserTest(unittest.TestCase):
     def test_get_fields(self):
         parser = Sps00Parser()
@@ -174,8 +170,6 @@ class Sps00ParserTest(unittest.TestCase):
 
     def test_parse_point(self):
         parser = Sps00Parser()
-        #                   1         2         3         4         5         6         7
-        #         01234567890123456789012345678901234567890123456789012345678901234567890123456789
         record = 'S3762                39611A2     7.2   0  64.8 454773.4 3008241.9  -0.2177042821'
 
         data = parser.parse_point(record)
@@ -194,3 +188,24 @@ class Sps00ParserTest(unittest.TestCase):
         self.assertEqual(-0.2, data[12])
         self.assertEqual(177, data[13])
         self.assertEqual('042821', data[14])
+
+    def test_parse_point2obj(self):
+        parser = Sps00Parser()
+        record = 'S3762                39611A2     7.2   0  64.8 454773.4 3008241.9  -0.2177042821'
+        obj = parser.parse_point2obj(record)
+
+        self.assertEqual('S', obj.type)
+        self.assertEqual(3762, obj.line)
+        self.assertEqual(3961, obj.point)
+        self.assertEqual(1, obj.point_idx)
+        self.assertEqual('A2', obj.point_code)
+        self.assertEqual(None, obj.static_cor)
+        self.assertEqual(7.2, obj.point_depth)
+        self.assertEqual(0, obj.datum)
+        self.assertEqual(None, obj.uphole_time)
+        self.assertEqual(64.8, obj.water_depth)
+        self.assertEqual(454773.4, obj.easting)
+        self.assertEqual(3008241.9, obj.northing)
+        self.assertEqual(-0.2, obj.elevation)
+        self.assertEqual(177, obj.day_of_year)
+        self.assertEqual('042821', obj.time)
