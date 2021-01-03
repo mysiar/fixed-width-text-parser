@@ -5,7 +5,11 @@ from FixedWidthTextParser.Parser import Parser
 
 
 class SpsParser(Parser):
-    pass
+    def parse_relation(self, text_line):
+        pass
+
+    def parse_point(self, text_line):
+        pass
 
 
 SRC_DATA_RECORD = 'S'
