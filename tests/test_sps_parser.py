@@ -1,5 +1,5 @@
 import unittest
-from FixedWidthTextParser.Seismic.SpsParser import Sps21Parser, Relation
+from FixedWidthTextParser.Seismic.SpsParser import Sps21Parser, Relation, Sps00Parser
 
 
 class Sps21ParserTest(unittest.TestCase):
@@ -160,3 +160,37 @@ class Sps21ParserTest(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class Sps00ParserTest(unittest.TestCase):
+    def test_get_fields(self):
+        parser = Sps00Parser()
+        fields = parser.get_fields_point()
+
+        self.assertEqual(15, len(fields))
+        self.assertEqual(['RECORD_ID', 'LINE', 'POINT', 'POINT_IDX', 'POINT_CODE', 'STATIC_COR', 'POINT_DEPTH', 'DATUM',
+                          'UPHOLE_TIME', 'WATER_DEPTH', 'EASTING', 'NORTHING', 'ELEVATION', 'DAY_OF_YEAR', 'TIME'],
+                         fields)
+
+    def test_parse_point(self):
+        parser = Sps00Parser()
+        #                   1         2         3         4         5         6         7
+        #         01234567890123456789012345678901234567890123456789012345678901234567890123456789
+        record = 'S3762                39611A2     7.2   0  64.8 454773.4 3008241.9  -0.2177042821'
+
+        data = parser.parse_point(record)
+        self.assertEqual('S', data[0])
+        self.assertEqual(3762, data[1])
+        self.assertEqual(3961, data[2])
+        self.assertEqual(1, data[3])
+        self.assertEqual('A2', data[4])
+        self.assertEqual(None, data[5])
+        self.assertEqual(7.2, data[6])
+        self.assertEqual(0, data[7])
+        self.assertEqual(None, data[8])
+        self.assertEqual(64.8, data[9])
+        self.assertEqual(454773.4, data[10])
+        self.assertEqual(3008241.9, data[11])
+        self.assertEqual(-0.2, data[12])
+        self.assertEqual(177, data[13])
+        self.assertEqual('042821', data[14])
