@@ -159,13 +159,13 @@ class Sps21Parser(SpsParser):
             point.line,
             point.point,
             point.point_idx,
-            point.point_code,
+            point.point_code if point.point_code is not None else '',
             point.uphole_time if point.uphole_time is not None else 0,
             point.easting,
             point.northing,
-            point.elevation,
-            point.day_of_year,
-            point.time
+            point.elevation if point.elevation is not None else 0.0,
+            point.day_of_year if point.day_of_year is not None else 0,
+            point.time if point.time is not None else ''
         )
 
 
