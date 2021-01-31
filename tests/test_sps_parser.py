@@ -160,12 +160,15 @@ class Sps21ParserTest(unittest.TestCase):
     def test_format_point(self):
         parser = Sps21Parser()
         record = 'S  21528.00  27830.00  1P1             0       756755.8 2561875.5 138.1265120558'
-
         point = Point(parser.parse_point(record))
-
         formatted = parser.format_point(point)
-
         self.assertEqual(record, formatted)
+
+        record = 'S  21528.00  27830.00  1P1                     756755.8 2561875.5 138.1265120558'
+        expected = 'S  21528.00  27830.00  1P1             0       756755.8 2561875.5 138.1265120558'
+        point = Point(parser.parse_point(record))
+        formatted = parser.format_point(point)
+        self.assertEqual(expected, formatted)
 
 
 class Sps00ParserTest(unittest.TestCase):
