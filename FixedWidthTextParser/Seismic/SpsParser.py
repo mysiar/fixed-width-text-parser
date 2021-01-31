@@ -150,6 +150,24 @@ class Sps21Parser(SpsParser):
             relation_def = self.RELATION_DEF
         super().__init__(point_def, relation_def)
 
+    def format_point(self, point: Point):
+        """ get formatted sps string from Point objects"""
+        pattern = "%1s%10.2f%10.2f  %1d%2s            %2d      %9.1f%10.1f%6.1f%3d%6s"
+
+        return pattern % (
+            point.type,
+            point.line,
+            point.point,
+            point.point_idx,
+            point.point_code,
+            point.uphole_time,
+            point.easting,
+            point.northing,
+            point.elevation,
+            point.day_of_year,
+            point.time
+        )
+
 
 class Sps00Parser(SpsParser):
     """

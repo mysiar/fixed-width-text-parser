@@ -136,7 +136,7 @@ class Parser:
             raise Exception('Text line format definition missing !')
 
     # *** TO OVERRIDE ***
-    def format(self, array_data):
+    def format_from_array(self, array_data):
         """
         Converts array to text line according to the definition
         """

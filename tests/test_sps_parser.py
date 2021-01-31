@@ -1,5 +1,5 @@
 import unittest
-from FixedWidthTextParser.Seismic.SpsParser import Sps21Parser, Relation, Sps00Parser
+from FixedWidthTextParser.Seismic.SpsParser import Sps21Parser, Relation, Sps00Parser, Point
 
 
 class Sps21ParserTest(unittest.TestCase):
@@ -157,9 +157,15 @@ class Sps21ParserTest(unittest.TestCase):
         data = parser.parse_relation(record)
         self.assertIsNone(data)
 
+    def test_format_point(self):
+        parser = Sps21Parser()
+        record = 'S  21528.00  27830.00  1P1             0       756755.8 2561875.5 138.1265120558'
 
-if __name__ == '__main__':
-    unittest.main()
+        point = Point(parser.parse_point(record))
+
+        formatted = parser.format_point(point)
+
+        self.assertEqual(record, formatted)
 
 
 class Sps00ParserTest(unittest.TestCase):
@@ -194,3 +200,7 @@ class Sps00ParserTest(unittest.TestCase):
         self.assertEqual(-0.2, data[12])
         self.assertEqual(177, data[13])
         self.assertEqual('042821', data[14])
+
+
+if __name__ == '__main__':
+    unittest.main()
